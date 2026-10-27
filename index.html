@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Laser PTMS construction project management dashboard">
+  <title>Laser PTMS | Project Management</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- LOGIN SCREEN -->
+  <section class="login-shell" id="loginScreen" aria-label="Laser PTMS sign in">
+    <div class="login-intro">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">LB</div>
+        <div><div class="brand-name">Laser PTMS</div><div class="brand-sub">Lasers Builders Corporation</div></div>
+      </div>
+      <div class="login-copy">
+        <h1>Construction project management for site teams.</h1>
+        <p>Track permits, approvals, deliveries, and QA checklists from one secure operations dashboard.</p>
+        <div class="hero-image" role="img" aria-label="Construction site with cranes and a building under development">
+          <div class="hero-pills">
+            <div class="hero-pill">9 active sites</div>
+            <div class="hero-pill">Real-time approvals</div>
+          </div>
+          <div class="hero-progress"><span style="font-size:9px">Site A</span><strong>65%</strong><span style="font-size:9px">On track</span></div>
+        </div>
+        <div class="mini-stats">
+          <div class="mini-stat"><span>Company projects</span><strong>12</strong><small class="positive">+2 this week</small></div>
+          <div class="mini-stat"><span>Open tasks</span><strong>34</strong><small class="negative">6 overdue</small></div>
+          <div class="mini-stat"><span>Budget utilization</span><strong>$7.7M</strong><small>of $12.4M</small></div>
+        </div>
+      </div>
+    </div>
+    <div class="login-panel">
+      <form class="login-card" id="loginForm" novalidate>
+        <h2>Sign in to Laser PTMS</h2>
+        <p class="subtext">Welcome back<span id="loginGreetingName">, Maya</span>. Access your construction projects, approvals, and site operations.</p>
+        <div class="field">
+          <label for="username">Username</label>
+          <div class="input-wrap"><span class="input-icon" aria-hidden="true">♙</span><input id="username" name="username" type="text" placeholder="Enter your username" value="maya.chen" autocomplete="username" required></div>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="input-wrap"><span class="input-icon" aria-hidden="true">♙</span><input id="password" name="password" type="password" placeholder="Enter your password" value="LaserDemo123" autocomplete="current-password" required minlength="8"><button class="password-toggle" id="togglePassword" type="button" aria-label="Show password">◉</button></div>
+        </div>
+        <div class="login-options">
+          <label class="check-label"><input type="checkbox" name="remember" checked> Remember me</label>
+          <button type="button" class="text-button" id="forgotPassword">Forgot password?</button>
+        </div>
+        <button type="submit" class="primary-button full-width">Sign in</button>
+        <p class="form-message" id="loginError" role="alert"></p>
+        <p class="login-foot">Need access? <button type="button" class="text-button" id="requestInvite">Request an invite</button></p>
+        <p class="demo-note">Demo UI only — connect authentication to your backend before production.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- DASHBOARD SCREEN -->
+  <div class="app-shell hidden" id="appScreen">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">LB</div>
+        <div><div class="brand-name">Laser PTMS</div><div class="brand-sub">Lasers Builders Corporation</div></div>
+      </div>
+      <div class="side-label">Employee workspace</div>
+      <nav class="nav-list" aria-label="Main navigation">
+        <button class="nav-item active" data-view="dashboard"><span class="nav-number">01</span> Dashboard</button>
+        <button class="nav-item" data-view="projects"><span class="nav-number">02</span> Projects</button>
+        <button class="nav-item" data-view="records"><span class="nav-number">03</span> Records</button>
+      </nav>
+      <div class="side-bottom">
+        <button class="outline-button" id="helpButton">Help center</button>
+        <button class="outline-button" id="signOut">Sign out</button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div><h1 id="pageTitle">Dashboard</h1><p id="pageSubtitle">Welcome back, Maya. Here's what is happening across your sites.</p></div>
+        <div class="top-actions"><input class="top-search" id="workspaceSearch" type="search" placeholder="Search workspace..." aria-label="Search workspace"></div>
+      </header>
+
+      <div class="content">
+        <section id="dashboardView">
+          <div class="toolbar">
+            <select id="periodSelect" aria-label="Dashboard reporting period"><option>This month</option><option>This week</option><option>This quarter</option></select>
+            <button class="primary-button" id="viewProjectsButton">View all projects</button>
+          </div>
+          <div class="metric-grid">
+            <article class="metric-card"><span class="metric-label">Assigned projects</span><strong id="assignedCount">3</strong><small>Across 3 construction sites</small></article>
+            <article class="metric-card"><span class="metric-label">Open tasks</span><strong id="openTaskCount">25</strong><small>4 due today</small></article>
+            <article class="metric-card"><span class="metric-label">My approvals</span><strong>4</strong><small>2 need your review</small></article>
+            <article class="metric-card"><span class="metric-label">Site readiness</span><strong>94%</strong><small>Safety compliance score</small></article>
+          </div>
+
+          <div class="dashboard-columns">
+            <section class="panel">
+              <div class="panel-head"><div><h2>Agenda &amp; announcements</h2><p class="panel-sub">Today · Tuesday, May 12</p></div></div>
+              <div class="agenda-list">
+                <div class="agenda-item"><div class="agenda-time">10:30 AM</div><div><strong>Site coordination call</strong><span>Harbor District Tower</span></div></div>
+                <div class="agenda-item"><div class="agenda-time">11:00 AM</div><div><strong>Crane access review</strong><span>Permit package awaiting approval</span></div></div>
+                <div class="agenda-item"><div class="agenda-time">02:00 PM</div><div><strong>Concrete delivery update</strong><span>Riverfront Plaza · delayed delivery</span></div></div>
+              </div>
+            </section>
+            <section class="panel">
+              <div class="panel-head"><div><h2>Urgent tasks</h2><p class="panel-sub"><span id="urgentRemaining">4</span> items due today</p></div></div>
+              <div class="task-list" id="urgentTasks">
+                <div class="task-row"><input id="task1" type="checkbox"><label for="task1">Review crane permit</label><span class="priority high">High</span></div>
+                <div class="task-row"><input id="task2" type="checkbox"><label for="task2">Confirm rebar delivery</label><span class="priority high">High</span></div>
+                <div class="task-row"><input id="task3" type="checkbox"><label for="task3">Assign QA checklist</label><span class="priority medium">Medium</span></div>
+                <div class="task-row"><input id="task4" type="checkbox"><label for="task4">Upload site photos</label><span class="priority low">Low</span></div>
+              </div>
+            </section>
+          </div>
+
+          <div class="lower-columns">
+            <section class="panel">
+              <div class="panel-head"><div><h2>Recent projects</h2><p class="panel-sub">Current progress across your active sites</p></div></div>
+              <div class="project-list" id="recentProjectList">
+                <div class="project-row" data-search="harbor district tower structural package"><div class="project-top"><strong>Harbor District Tower</strong><span>65%</span></div><div class="project-desc">Structural package · 12 active tasks</div><div class="progress-track"><div class="progress-fill" style="width:65%"></div></div></div>
+                <div class="project-row" data-search="riverfront plaza foundation package"><div class="project-top"><strong>Riverfront Plaza</strong><span>42%</span></div><div class="project-desc">Foundation package · 8 active tasks</div><div class="progress-track"><div class="progress-fill" style="width:42%"></div></div></div>
+                <div class="project-row" data-search="north dock terminal finishing package"><div class="project-top"><strong>North Dock Terminal</strong><span>88%</span></div><div class="project-desc">Finishing package · 5 active tasks</div><div class="progress-track"><div class="progress-fill" style="width:88%"></div></div></div>
+              </div>
+            </section>
+            <section class="panel">
+              <div class="panel-head"><div><h2>Project statistics</h2><p class="panel-sub">Your assigned portfolio</p></div></div>
+              <div class="stat-line"><div class="stat-caption"><span>Budget spent</span><strong>$7.7M / $12.4M</strong></div><div class="progress-track"><div class="progress-fill" style="width:62%"></div></div></div>
+              <div class="stat-line"><div class="stat-caption"><span>Equipment utilization</span><strong>78%</strong></div><div class="progress-track"><div class="progress-fill" style="width:78%"></div></div></div>
+              <div class="stat-line"><div class="stat-caption"><span>Safety compliance</span><strong>94%</strong></div><div class="progress-track"><div class="progress-fill" style="width:94%"></div></div></div>
+            </section>
+          </div>
+        </section>
+
+        <section id="projectsView" class="hidden">
+          <div class="view-heading"><div><h2>Projects</h2><p>Search and manage the projects you have permission to access.</p></div><button class="primary-button" id="addProjectButton">+ Add project</button></div>
+          <form id="filterForm" class="panel" style="margin-bottom:14px">
+            <div class="filter-grid">
+              <div class="field"><label for="filterName">Project name</label><input id="filterName" type="search" placeholder="Search projects"></div>
+              <div class="field"><label for="filterStatus">Status</label><select id="filterStatus"><option value="">All statuses</option><option>Pending</option><option>Ongoing</option><option>On Hold</option><option>Completed</option></select></div>
+              <div class="field"><label for="filterPriority">Priority</label><select id="filterPriority"><option value="">All priorities</option><option>Low</option><option>Medium</option><option>High</option><option>Critical</option></select></div>
+              <div class="field"><label for="filterClient">Client</label><select id="filterClient"><option value="">All clients</option><option>Harbor Group</option><option>Riverfront Holdings</option><option>North Dock Co.</option><option>Metro Development</option></select></div>
+              <div class="field"><label for="filterManager">Project manager</label><select id="filterManager"><option value="">All managers</option><option>Maya Chen</option><option>Alex Reyes</option><option>Jordan Cruz</option></select></div>
+              <div class="field"><label for="dateFrom">Start date from</label><input id="dateFrom" type="date"></div>
+              <div class="field"><label for="dateTo">Start date to</label><input id="dateTo" type="date"></div>
+              <div class="field"><label for="minBudget">Minimum budget ($)</label><input id="minBudget" type="number" min="0" placeholder="0"></div>
+              <div class="field"><label for="maxBudget">Maximum budget ($)</label><input id="maxBudget" type="number" min="0" placeholder="No limit"></div>
+              <div class="field"><label for="sortBy">Sort by</label><select id="sortBy"><option value="name">Project name</option><option value="date">Start date</option><option value="budget">Budget</option><option value="progress">Progress</option></select></div>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end"><button type="reset" class="outline-button">Clear filters</button><button type="submit" class="primary-button">Apply filters</button></div>
+            <p class="form-message" id="filterError" role="alert"></p>
+          </form>
+          <section class="panel project-table-wrap">
+            <table>
+              <thead><tr><th>Project</th><th>Client</th><th>Project manager</th><th>Start date</th><th>Budget</th><th>Progress</th><th>Status</th><th>Action</th></tr></thead>
+              <tbody id="projectTableBody"></tbody>
+            </table>
+            <div class="empty-state hidden" id="emptyProjects">No projects match your filters.</div>
+          </section>
+        </section>
+
+        <section id="recordsView" class="hidden">
+          <div class="view-heading"><div><h2>Records</h2><p>Quick access to operational records and project documentation.</p></div></div>
+          <div class="metric-grid">
+            <article class="metric-card"><span class="metric-label">Permit records</span><strong>18</strong><small>3 awaiting review</small></article>
+            <article class="metric-card"><span class="metric-label">Delivery records</span><strong>27</strong><small>2 pending confirmation</small></article>
+            <article class="metric-card"><span class="metric-label">QA checklists</span><strong>42</strong><small>6 need completion</small></article>
+            <article class="metric-card"><span class="metric-label">Site documents</span><strong>126</strong><small>Updated this month</small></article>
+          </div>
+          <section class="panel"><h2>Recent records</h2><p class="panel-sub" style="margin:6px 0 12px">Sample UI records — connect these to your database for production use.</p>
+            <div class="project-table-wrap"><table><thead><tr><th>Record</th><th>Project</th><th>Type</th><th>Last updated</th><th>Status</th></tr></thead><tbody>
+              <tr><td>PER-2026-018</td><td>Harbor District Tower</td><td>Crane permit</td><td>May 12, 2026</td><td><span class="status on-hold">Awaiting review</span></td></tr>
+              <tr><td>DEL-2026-027</td><td>Riverfront Plaza</td><td>Material delivery</td><td>May 12, 2026</td><td><span class="status">Pending</span></td></tr>
+              <tr><td>QA-2026-042</td><td>North Dock Terminal</td><td>QA checklist</td><td>May 11, 2026</td><td><span class="status completed">Completed</span></td></tr>
+            </tbody></table></div>
+          </section>
+        </section>
+      </div>
+
+      <footer class="footer">
+        <div class="user-chip"><div class="avatar" id="footerAvatar">MC</div><div><strong id="footerName">Maya Chen</strong><span>Senior Project Coordinator</span></div></div>
+        <div><span class="status-dot"></span>Connected · Laser PTMS</div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Add project form -->
+  <div class="modal-backdrop hidden" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <form class="modal" id="projectForm" novalidate>
+      <div class="modal-header"><div><h2 id="modalTitle">Add new project</h2><p>Enter project details. Required fields are marked.</p></div><button type="button" class="close-button" id="closeModal" aria-label="Close form">×</button></div>
+      <div class="form-grid">
+        <div class="field"><label for="projectName">Project name *</label><input id="projectName" name="projectName" required minlength="3" maxlength="150" placeholder="e.g. Harbor District Tower"></div>
+        <div class="field"><label for="projectClient">Client *</label><input id="projectClient" name="projectClient" required placeholder="Client or company name"></div>
+        <div class="field full"><label for="projectDescription">Project description *</label><textarea id="projectDescription" name="projectDescription" required maxlength="1000" placeholder="Briefly describe the project scope"></textarea></div>
+        <div class="field"><label for="projectBudget">Allocated budget ($) *</label><input id="projectBudget" name="projectBudget" type="number" min="1" step="0.01" required placeholder="e.g. 2500000"></div>
+        <div class="field"><label for="projectContractor">Contractor / subcontractor *</label><input id="projectContractor" name="projectContractor" required placeholder="Company name"></div>
+        <div class="field"><label for="projectManager">Project manager *</label><select id="projectManager" name="projectManager" required><option value="">Select a manager</option><option>Maya Chen</option><option>Alex Reyes</option><option>Jordan Cruz</option></select></div>
+        <div class="field"><label for="projectPriority">Priority *</label><select id="projectPriority" name="projectPriority" required><option value="">Select priority</option><option>Low</option><option>Medium</option><option>High</option><option>Critical</option></select></div>
+        <div class="field"><label for="projectStart">Start date *</label><input id="projectStart" name="projectStart" type="date" required></div>
+        <div class="field"><label for="projectEnd">Expected end date *</label><input id="projectEnd" name="projectEnd" type="date" required></div>
+        <div class="field"><label for="projectStatus">Project status *</label><select id="projectStatus" name="projectStatus" required><option value="Pending">Pending</option><option value="Ongoing">Ongoing</option><option value="On Hold">On Hold</option><option value="Completed">Completed</option></select></div>
+      </div>
+      <p class="form-message" id="projectFormError" role="alert"></p>
+      <div class="modal-actions"><button type="button" class="outline-button" id="cancelProject">Cancel</button><button type="submit" class="primary-button">Save project</button></div>
+    </form>
+  </div>
+  <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
